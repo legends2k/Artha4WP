@@ -1,0 +1,142 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="Artha4WP.Help"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False">
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:SwivelTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:SwivelTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:SwivelTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:SwivelTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="Artha" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="Help" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <ItemsControl>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.Template>
+                    <ControlTemplate TargetType="ItemsControl">
+                        <ScrollViewer>
+                            <ItemsPresenter />
+                        </ScrollViewer>
+                    </ControlTemplate>
+                </ItemsControl.Template>
+                <ItemsControl.Resources>
+                    <Style x:Name="helpRelativeName" TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}" />
+                        <Setter Property="Margin" Value="0,10,0,5" />
+                        <Setter Property="TextWrapping" Value="Wrap" />
+                        <Setter Property="FontStyle" Value="Italic" />
+                        <Setter Property="FontFamily" Value="Georgia" />
+                        <Setter Property="FontSize" Value="35" />
+                        <Setter Property="FontWeight" Value="Medium" />
+                    </Style>
+                    <Style x:Name="helpRelativeDefn" TargetType="TextBlock">
+                        <Setter Property="Margin" Value="15,0,0,3" />
+                        <Setter Property="TextWrapping" Value="Wrap" />
+                        <Setter Property="FontSize" Value="22" />
+                        <Setter Property="FontWeight" Value="Light" />
+                    </Style>
+                </ItemsControl.Resources>
+                <TextBlock FontSize="24" TextWrapping="Wrap" Text="Artha is a well-rounded thesaurus, not just a dictionary. Proper nouns i.e. famous personalities, places, events, phrases, acronyms, slangs, etc. are part of it too. Mahatma Gandhi, Zeus, power trip, Mayan, World War 2, roll in the hay, 'hood, thirst for knowledge, TLC - to list a few, are perfectly valid searches.&#13;&#13;Below is a list of possible relatives a given word could have. Different words have different sets of relatives. E.g. 'rich' has Synoyms but no Entails or Causes; then again, 'kick' which has Entails has no Member of. Hence the number and type of relatives a term has varies based its usage, meaning, part of speech and many such." />
+                <TextBlock Style="{StaticResource helpRelativeName}" Text="Synonym"/>
+                <TextBlock Style="{StaticResource helpRelativeDefn}" Text="Two words that can be interchanged in a context are said to be synonymous relative to that context. E.g. Rich is synonymous to Plentiful, Copious, Fat, Fertile, etc." />
+                <TextBlock Style="{StaticResource helpRelativeName}" Text="Antonym" />
+                <TextBlock Style="{StaticResource helpRelativeDefn}" Text="A word that expresses a meaning opposed to the meaning of another word in a particular context. E.g. the antonyms of Rich are Poor, Lean, etc." />
+                <TextBlock Style="{StaticResource helpRelativeName}" Text="Kind of (Hypernym)" />
+                <TextBlock Style="{StaticResource helpRelativeDefn}" Text="The generic term used to designate a whole class of specific instances. Y is a hypernym of X if X is a (kind of) Y. E.g. Car is a kind of Motor vehicle i.e. Motor vehicle is a hypernym of Car" />
+                <TextBlock Style="{StaticResource helpRelativeName}" Text="Kinds (Hyponym)" />
+                <TextBlock Style="{StaticResource helpRelativeDefn}" Text="The specific term used to designate a member of a class. X is a hyponym of Y if X is a (kind of) Y. E.g. car is a kind of motor vehicle i.e. Car is a hyponym of Motor vehicle" />
+                <TextBlock Style="{StaticResource helpRelativeName}" Text="Members (Member Meronym)" />
+                <TextBlock Style="{StaticResource helpRelativeDefn}" Text="The name of a constituent member of something. X is a meronym of Y if X is a member of Y. E.g. Members of genus Panthera are Tiger, Lion, Panther, Jaguar, etc." />
+                <TextBlock Style="{StaticResource helpRelativeName}" Text="Member of (Member Holonym)" />
+                <TextBlock Style="{StaticResource helpRelativeDefn}" Text="The name of the whole of which the meronym names a part. Y is a holonym of X if X is a member of Y. E.g. Tiger is a member of genus Panthera" />
+                <TextBlock Style="{StaticResource helpRelativeName}" Text="Substances (Substance Meronym)" />
+                <TextBlock Style="{StaticResource helpRelativeDefn}" Text="The name of a constituent substance of something. X is a meronym of Y if X is a substance of Y. E.g. Substances of Water are Oxygen and Hyderogen" />
+                <TextBlock Style="{StaticResource helpRelativeName}" Text="Substance of (Substance Holonym)" />
+                <TextBlock Style="{StaticResource helpRelativeDefn}" Text="The name of the whole of which the meronym names a part. Y is a holonym of X if X is a substance of Y. E.g. Oxygen is a substance of Water" />
+                <TextBlock Style="{StaticResource helpRelativeName}" Text="Parts (Part Meronym)" />
+                <TextBlock Style="{StaticResource helpRelativeDefn}" Text="The name of a constituent substance of something. X is a meronym of Y if X is a part of Y. E.g. Parts of Gear are Sprocket, Cog, Tooth, etc." />
+                <TextBlock Style="{StaticResource helpRelativeName}" Text="Part of (Part Holonym)" />
+                <TextBlock Style="{StaticResource helpRelativeDefn}" Text="The name of the whole of which the meronym names a part. Y is a holonym of X if X is a part of Y. E.g. Gear is a part of Engine" />
+                <TextBlock Style="{StaticResource helpRelativeName}" Text="Attribute" />
+                <TextBlock Style="{StaticResource helpRelativeDefn}" Text="A noun for which adjectives express values. The noun Weight is an attribute, for which the adjectives Light and Heavy express values." />
+                <TextBlock Style="{StaticResource helpRelativeName}" Text="Derivative" />
+                <TextBlock Style="{StaticResource helpRelativeDefn}" Text="Terms in different syntactic categories that have the same root form and are semantically related. E.g. Derivates of Weight are Weighty, Heavy, etc." />
+                <TextBlock Style="{StaticResource helpRelativeName}" Text="Entails" />
+                <TextBlock Style="{StaticResource helpRelativeDefn}" Text="A verb X entails Y if X cannot be done unless Y is, or has been, done. E.g. Kick entails Move, Displace, etc." />
+                <TextBlock Style="{StaticResource helpRelativeName}" Text="Causes" />
+                <TextBlock Style="{StaticResource helpRelativeDefn}" Text="The possible states a given verb will lead to. E.g. kill causes to die, perish, pass away, etc." />
+                <TextBlock Style="{StaticResource helpRelativeName}" Text="Topic" />
+                <TextBlock Style="{StaticResource helpRelativeDefn}" Text="A topic/domain in which a word is used often. E.g. Photography is the topic/domain in which Contrast is often used." />
+                <TextBlock Style="{StaticResource helpRelativeName}" Text="Topical Terms" />
+                <TextBlock Style="{StaticResource helpRelativeDefn}" Text="Terms frequently used in a particular topic/domain. E.g. Contrast, Expose, Develop, etc. are topical terms of the Photography domain" />
+                <TextBlock Style="{StaticResource helpRelativeName}" Text="Region" />
+                <TextBlock Style="{StaticResource helpRelativeDefn}" Text="A region to which a word is a native of. E.g. Ashram is a native of region India" />
+                <TextBlock Style="{StaticResource helpRelativeName}" Text="Regional Terms" />
+                <TextBlock Style="{StaticResource helpRelativeDefn}" Text="Terms indigenous to a region. E.g. Regional Terms of India are Ahimsa, Ashram, Ayah, Pukka, Panchayat, Jawan, etc." />
+                <TextBlock Style="{StaticResource helpRelativeName}" Text="Usage" />
+                <TextBlock Style="{StaticResource helpRelativeDefn}" Text="A topical classicfication of a word based on the usage. E.g. Blockbuster is used as a Figure of Speech" />
+                <TextBlock Style="{StaticResource helpRelativeName}" Text="Usage Terms" />
+                <TextBlock Style="{StaticResource helpRelativeDefn}" Text="Terms belonging to a particular usage. E.g. Usage terms of Figure of Speech are Bull's eye, Blockbuster, Bell ringer, etc." />
+                <TextBlock Style="{StaticResource helpRelativeName}" Text="Similar" />
+                <TextBlock Style="{StaticResource helpRelativeDefn}" Text="Words that are similar to but not necessarily synonymous to a word. E.g. Tangible is similar to Tactile, Concrete, Real, etc." />
+            </ItemsControl>
+        </Grid>
+    </Grid>
+ 
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>

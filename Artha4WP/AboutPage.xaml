@@ -1,0 +1,118 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="Artha4WP.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False">
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:SwivelTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:SwivelTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:SwivelTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:SwivelTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="0,30,0,20">
+            <TextBlock x:Name="ApplicationTitle"
+                       HorizontalAlignment="Center"
+                       Text="Artha ~ The Open Thesaurus"
+                       FontFamily="Georgia"
+                       TextOptions.TextHintingMode="Animated"
+                       FontSize="24" />
+            <Rectangle Width="162" Height="162" Margin="0,20,0,20">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="SplashScreenImage.jpg" Stretch="None">
+                        <ImageBrush.Transform>
+                            <TranslateTransform X="-5" Y="176" />
+                        </ImageBrush.Transform>
+                    </ImageBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <!--<Image Stretch="None" Margin="0,20,0,20" Source="Background.png" />-->
+            <TextBlock FontFamily="Calibri" TextAlignment="Center" Text="Copyright © 2009 - 2011 Sundaram Ramaswamy" />
+            <TextBlock FontFamily="Calibri" TextAlignment="Center" Margin="0,5,0,0" TextWrapping="Wrap">WordNet 3.0 Copyright © 2009 - 2011<LineBreak />Princeton University. All rights reserved.</TextBlock>
+            <HyperlinkButton FontFamily="Calibri" Margin="0,10,0,0" Content="legends2k@yahoo.com" TargetName="_blank"
+                             NavigateUri="mailto:legends2k@yahoo.com" />
+            <HyperlinkButton FontFamily="Calibri" Content="http://artha.sourceforge.net/"  TargetName="_blank"
+                             NavigateUri="http://artha.sourceforge.net/" />
+            <ScrollViewer Margin="0,20,0,0" Height="320" HorizontalAlignment="Center">
+                <StackPanel Width="440" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <StackPanel.Resources>
+                        <Style x:Key="aboutTextBlock" TargetType="TextBlock">
+                            <Setter Property="FontFamily" Value="Georgia" />
+                            <Setter Property="FontWeight" Value="Light" />
+                            <Setter Property="FontSize" Value="24" />
+                            <Setter Property="TextOptions.TextHintingMode" Value="Animated" />
+                        </Style>
+                    </StackPanel.Resources>
+                    <TextBlock TextWrapping="Wrap" Margin="0,0,0,15" Style="{StaticResource aboutTextBlock}">
+                        <Run FontStyle="Italic">Knowledge should be free</Run>&#160;is the cornerstone idea behind Artha's work. <Run FontStyle="Italic">Artha</Run>&#160;implies meaning, definition, reason, implication, purpose, material or notion in Tamil and Sanskrit, and hence the name. This version of Artha is dedicated to Donald E. Knuth, the great computer scientist.
+                    </TextBlock>
+                    <TextBlock TextWrapping="Wrap" Margin="0,0,0,15" Style="{StaticResource aboutTextBlock}">
+                        Artha is an open-source, cross-platform thesaurus available for Linux,
+                        Windows and WP7. The desktop versions can be downloaded at the above link.
+                    </TextBlock>
+                    <TextBlock TextWrapping="Wrap" Margin="0,0,0,15" Style="{StaticResource aboutTextBlock}">
+                        WordNet is an excellent thesaurus database and a work of art by Cognitive 
+                        Science Laboratory of Princeton University. Many thanks to George A. Miller, 
+                        Princeton University for giving such a vast, comprehend-able corpus for free. 
+                        Needless to say, without WordNet, Artha would not have been possible.
+                    </TextBlock>
+                    <TextBlock TextWrapping="Wrap" Margin="0,0,0,15" Style="{StaticResource aboutTextBlock}">
+                        WordNet 3.0 Disclaimer<LineBreak />
+                        THIS SOFTWARE AND DATABASE IS PROVIDED &quot;AS IS&quot; AND PRINCETON UNIVERSITY 
+                        MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED.  BY WAY OF EXAMPLE, BUT 
+                        NOT LIMITATION, PRINCETON UNIVERSITY MAKES NO REPRESENTATIONS OR WARRANTIES OF 
+                        MERCHANTABILITY OR FITNESS FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF THE 
+                        LICENSED SOFTWARE, DATABASE OR DOCUMENTATION WILL NOT INFRINGE ANY THIRD PARTY PATENTS, 
+                        COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS."
+                    </TextBlock>
+                </StackPanel>
+            </ScrollViewer>
+        </StackPanel>
+    </Grid>
+ 
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>

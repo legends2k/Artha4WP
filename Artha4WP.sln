@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artha4WP", "Artha4WP\Artha4WP.csproj", "{A39F3E1F-ACB5-4D30-A62F-7244FE14673D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordNet", "WordNet\WordNet.csproj", "{F2549085-7893-4B99-820F-5E582993A0AE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A39F3E1F-ACB5-4D30-A62F-7244FE14673D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A39F3E1F-ACB5-4D30-A62F-7244FE14673D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A39F3E1F-ACB5-4D30-A62F-7244FE14673D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A39F3E1F-ACB5-4D30-A62F-7244FE14673D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A39F3E1F-ACB5-4D30-A62F-7244FE14673D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A39F3E1F-ACB5-4D30-A62F-7244FE14673D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F2549085-7893-4B99-820F-5E582993A0AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2549085-7893-4B99-820F-5E582993A0AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2549085-7893-4B99-820F-5E582993A0AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2549085-7893-4B99-820F-5E582993A0AE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

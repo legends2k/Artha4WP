@@ -1,0 +1,202 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="Artha4WP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait">
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:SwivelTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:SwivelTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:SwivelTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <!--Pivot Control-->
+        <controls:Pivot Title="Artha" x:Name="pvtRoot">
+            <!--Pivot item one-->
+            <controls:PivotItem Header="Definitions" x:Name="pivotDefinitions">
+                <ScrollViewer Margin="0,50,0,0"
+                              x:Name="defnsScroller"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled">
+                    <!--Double line list with text wrapping-->
+                    <ItemsControl x:Name="lstPOSs"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                  ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0,0,0,20">
+                                    <TextBlock Text="{Binding POSName}"
+                                               Style="{StaticResource PhoneTextExtraLargeStyle}"
+                                               FontWeight="ExtraBold"
+                                               TextWrapping="Wrap" />
+                                    <ItemsControl x:Name="lstWordSenses"
+                                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                                  ItemsSource="{Binding Senses}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Margin="0,0,0,17">
+                                                    <StackPanel.Resources>
+                                                        <Style x:Name="ReadOnlyDefnTextBox" TargetType="TextBox">
+                                                            <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}" />
+                                                            <Setter Property="IsReadOnly" Value="True" />
+                                                            <Setter Property="TextWrapping" Value="Wrap" />
+                                                            <Setter Property="FontFamily" Value="Trebuchet MS" />
+                                                            <Setter Property="FontSize" Value="26" />
+                                                            <Setter Property="FontWeight" Value="Medium" />
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate>
+                                                                        <Grid>
+                                                                            <ContentPresenter x:Name="ContentElement" />
+                                                                        </Grid>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Style>
+                                                        <Style x:Name="ReadOnlyExampleTextBox" TargetType="TextBox">
+                                                            <Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}" />
+                                                            <Setter Property="IsReadOnly" Value="True" />
+                                                            <Setter Property="TextWrapping" Value="Wrap" />
+                                                            <Setter Property="FontFamily" Value="Georgia" />
+                                                            <Setter Property="FontStyle" Value="Italic" />
+                                                            <Setter Property="FontSize" Value="24" />
+                                                            <Setter Property="FontWeight" Value="Light" />
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate>
+                                                                        <Grid>
+                                                                            <ContentPresenter x:Name="ContentElement" />
+                                                                        </Grid>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Style>
+                                                    </StackPanel.Resources>
+                                                    <TextBox Text="{Binding Definition}" GotFocus="txtPOS_GotFocus"
+                                                             Style="{StaticResource ReadOnlyDefnTextBox}" />
+                                                    <TextBox Text="{Binding Example}" GotFocus="txtPOS_GotFocus"
+                                                             Style="{StaticResource ReadOnlyExampleTextBox}" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </controls:PivotItem>
+            <controls:Pivot.Resources>
+                <DataTemplate x:Name="templateRelativeList">
+                    <TextBlock Text="{Binding}" Margin="0,0,0,10"
+                               Style="{StaticResource PhoneTextAccentStyle}"
+                               FontSize="26"
+                               TextWrapping="Wrap"
+                               FontWeight="Medium" />
+                </DataTemplate>
+            </controls:Pivot.Resources>
+        </controls:Pivot>
+        <TextBox Height="72"
+                 Width="458"
+                 VerticalAlignment="Top"
+                 HorizontalAlignment="Left"
+                 AcceptsReturn="False"
+                 Margin="8,140,0,0"
+                 Padding="0,0,48,0"
+                 InputScope="Text"
+                 Name="txtQuery"
+                 GotFocus="txtQuery_GotFocus"
+                 KeyUp="txtQuery_KeyUp" />
+        <Button Height="72"
+                Width="72"
+                HorizontalAlignment="Left"
+                Margin="394,140,0,0"
+                Name="btnFind"
+                VerticalAlignment="Top"
+                Click="btnFind_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/Artha4WP;component/Images/appbar.feature.search.rest.png" />
+            </Button.Background>
+        </Button>
+        <Rectangle RadiusX="10"
+                   RadiusY="10"
+                   Margin="10,7"
+                   Fill="White"
+                   Width="55"
+                   Height="55"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Right"
+                   Stroke="Black"
+                   MouseLeftButtonUp="AboutText_MouseLeftButtonUp" />
+        <TextBlock VerticalAlignment="Top"
+                   HorizontalAlignment="Right"
+                   Text="a"
+                   Foreground="Black"
+                   FontSize="52"
+                   FontFamily="Trebuchet MS"
+                   Margin="22,0"
+                   MouseLeftButtonUp="AboutText_MouseLeftButtonUp" />
+        <Rectangle RadiusX="10"
+                   RadiusY="10"
+                   Margin="80,7"
+                   Fill="White"
+                   Width="55"
+                   Height="55"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Right"
+                   Stroke="Black" />
+        <Image Source="/Artha4WP;component/Images/appbar.questionmark.rest.png"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Top"
+               Width="50"
+               Margin="0,10,83,0"
+               MouseLeftButtonUp="Help_MouseLeftButtonUp" />
+        <toolkit:PerformanceProgressBar Name="progressBar" Height="7" VerticalAlignment="Top" HorizontalAlignment="Center" Width="460" Visibility="Collapsed" />
+    </Grid>
+ 
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>
